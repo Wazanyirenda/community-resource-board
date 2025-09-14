@@ -33,12 +33,12 @@ export function Navigation() {
             {!isAuthenticated ? (
               <div className="flex items-center gap-3">
                 <Link href="/login">
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
                     Sign In
                   </Button>
                 </Link>
                 <Link href="/signup">
-                  <Button size="sm">
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white font-medium">
                     Sign Up
                   </Button>
                 </Link>
@@ -87,12 +87,12 @@ export function Navigation() {
               {!isAuthenticated ? (
                 <div className="flex flex-col space-y-3 pt-2">
                   <Link href="/login" onClick={() => setIsOpen(false)}>
-                    <Button variant="outline" size="sm" className="w-full">
+                    <Button variant="outline" size="sm" className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
                       Sign In
                     </Button>
                   </Link>
                   <Link href="/signup" onClick={() => setIsOpen(false)}>
-                    <Button size="sm" className="w-full">
+                    <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium">
                       Sign Up
                     </Button>
                   </Link>

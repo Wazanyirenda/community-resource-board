@@ -28,8 +28,8 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/resources" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6">
-                See What’s Nearby
+              <Button variant="outline" size="lg" className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
+                See What's Nearby
               </Button>
             </Link>
           </div>
@@ -148,7 +148,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center max-w-lg sm:max-w-none mx-auto">
             <Link href="/signup" className="w-full sm:w-auto">
-              <Button size="lg" variant="secondary" className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6">
+              <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 bg-white text-blue-600 hover:bg-gray-50 border-2 border-white font-semibold">
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Create free account
               </Button>
