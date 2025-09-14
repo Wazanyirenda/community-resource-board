@@ -12,21 +12,30 @@ export type Database = {
         Row: {
           id: string
           email: string
-          name: string
+          name: string | null
+          avatar: string | null
+          location: string | null
+          bio: string | null
           created_at: string
           updated_at: string
         }
         Insert: {
           id?: string
           email: string
-          name: string
+          name?: string | null
+          avatar?: string | null
+          location?: string | null
+          bio?: string | null
           created_at?: string
           updated_at?: string
         }
         Update: {
           id?: string
           email?: string
-          name?: string
+          name?: string | null
+          avatar?: string | null
+          location?: string | null
+          bio?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -39,6 +48,7 @@ export type Database = {
           category: string
           location: string
           image_url: string | null
+          is_available: boolean
           user_id: string
           created_at: string
           updated_at: string
@@ -50,6 +60,7 @@ export type Database = {
           category: string
           location: string
           image_url?: string | null
+          is_available?: boolean
           user_id: string
           created_at?: string
           updated_at?: string
@@ -61,9 +72,62 @@ export type Database = {
           category?: string
           location?: string
           image_url?: string | null
+          is_available?: boolean
           user_id?: string
           created_at?: string
           updated_at?: string
+        }
+      }
+      reviews: {
+        Row: {
+          id: string
+          content: string
+          rating: number
+          user_id: string
+          resource_id: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          content: string
+          rating: number
+          user_id: string
+          resource_id: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          content?: string
+          rating?: number
+          user_id?: string
+          resource_id?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      ratings: {
+        Row: {
+          id: string
+          value: number
+          user_id: string
+          resource_id: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          value: number
+          user_id: string
+          resource_id: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          value?: number
+          user_id?: string
+          resource_id?: string
+          created_at?: string
         }
       }
     }

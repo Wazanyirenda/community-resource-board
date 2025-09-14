@@ -3,13 +3,13 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, LogOut } from 'lucide-react'
+import { useAuth } from '@/contexts/AuthContext'
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
-  
-  // TODO: Replace with actual auth state when authentication is implemented
-  const isAuthenticated = false
+  const { user, signOut } = useAuth()
+  const isAuthenticated = !!user
 
   return (
     <nav className="border-b bg-white sticky top-0 z-50">
@@ -45,11 +45,21 @@ export function Navigation() {
               </div>
             ) : (
               <div className="flex items-center gap-3">
-                <Button variant="outline" size="sm">
-                  Profile
-                </Button>
-                <Button variant="ghost" size="sm">
-                  Sign Out
+                <span className="text-sm text-gray-600 hidden sm:inline">
+                  {user?.email}
+                </span>
+                <Link href="/dashboard">
+                  <Button variant="outline" size="sm">
+                    Dashboard
+                  </Button>
+                </Link>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => signOut()}
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  <LogOut className="w-4 h-4" />
                 </Button>
               </div>
             )}
@@ -99,10 +109,24 @@ export function Navigation() {
                 </div>
               ) : (
                 <div className="flex flex-col space-y-3 pt-2">
-                  <Button variant="outline" size="sm" className="w-full">
-                    Profile
-                  </Button>
-                  <Button variant="ghost" size="sm" className="w-full">
+                  <div className="text-sm text-gray-600 px-2">
+                    {user?.email}
+                  </div>
+                  <Link href="/dashboard" onClick={() => setIsOpen(false)}>
+                    <Button variant="outline" size="sm" className="w-full">
+                      Dashboard
+                    </Button>
+                  </Link>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="w-full text-gray-600 hover:text-gray-900"
+                    onClick={() => {
+                      signOut()
+                      setIsOpen(false)
+                    }}
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
                     Sign Out
                   </Button>
                 </div>
