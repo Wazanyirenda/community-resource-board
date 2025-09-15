@@ -3,7 +3,25 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    // Session storage - options: 'localStorage', 'sessionStorage', 'cookies'
+    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+    
+    // Auto-refresh the session
+    autoRefreshToken: true,
+    
+    // Persist session across browser restarts
+    persistSession: true,
+    
+    // Detect session changes (e.g., user signs out in another tab)
+    detectSessionInUrl: true,
+    
+    // Custom session configuration (optional)
+    // You can customize these in your Supabase Dashboard → Authentication → Settings
+    flowType: 'pkce', // More secure flow
+  },
+})
 
 export type Database = {
   public: {

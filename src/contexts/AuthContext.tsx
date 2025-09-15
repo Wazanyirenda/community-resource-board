@@ -50,6 +50,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       },
     })
     if (error) throw error
+
+    // Ensure user profile is created in our users table
+    if (data.user) {
+      try {
+        await supabase.from('users').upsert({
+          id: data.user.id,
+          email: data.user.email!,
+          name: name || '',
+        }, { onConflict: 'id' })
+      } catch (profileError) {
+        console.error('Failed to create user profile:', profileError)
+        // Don't throw here - auth succeeded, profile creation is secondary
+      }
+    }
+    
     return data
   }
 
